@@ -37,10 +37,15 @@ fn main() {
 
     let latest_s = gives_ownership(); // here we changed the owner
     println!("{latest_s}");
+
+    let s1 = String::from("Dhairya Majmudar");
+
+    let lenght = reference(&s1);
+    println!("{lenght}");
 }
 
 fn move_example() {
-    let s1 = String::from("Dhairya from cool things!!");
+    let s1: String = String::from("Dhairya from cool things!!");
 
     let s2 = s1; // this will move the ownership of s1 to s2
 
@@ -54,4 +59,13 @@ fn move_example() {
 fn gives_ownership() -> String {
     let s = String::from("Hello from gives_ownership function");
     s
+}
+
+// !!References and Borrowing!!
+// references are represented by "&" symbol
+// references are like pointers where we can pass the address of the data stored in memory
+
+fn reference(s: &String) -> usize {
+    // here we are not passing ownership which thus it will not be dropped after function scope ends
+    s.len()
 }
