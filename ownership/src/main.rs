@@ -42,6 +42,11 @@ fn main() {
 
     let lenght = reference(&s1);
     println!("{lenght}");
+
+    // slices
+    let string1 = String::from("Dhairya Majmudar");
+    let first_word = slice_exmaple(&string1);
+    println!("{first_word}");
 }
 
 fn move_example() {
@@ -68,4 +73,19 @@ fn gives_ownership() -> String {
 fn reference(s: &String) -> usize {
     // here we are not passing ownership which thus it will not be dropped after function scope ends
     s.len()
+}
+
+// slices
+// slice is a kind of reference which does not have ownership
+
+fn slice_exmaple(str: &String) -> usize {
+    let bytes = str.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    str.len()
 }
